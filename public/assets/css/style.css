@@ -128,3 +128,5 @@ a:hover { text-decoration: underline; }
     .nav-links { gap: 14px; flex-wrap: wrap; justify-content: center; }
     .hero { padding: 60px 0; }
 }
+
+.card .price { color: var(--primary); font-weight: 700; margin-top: 12px; }

@@ -1,5 +1,16 @@
 <?php
 require __DIR__ . '/../app/includes/auth.php';
+require __DIR__ . '/../app/includes/db.php';
+
+$services = $conn->query(
+    'SELECT s.id, s.name, s.description, s.icon, MIN(p.price) AS from_price
+     FROM services s
+     JOIN packages p ON p.service_id = s.id AND p.is_active = 1
+     WHERE s.is_active = 1
+     GROUP BY s.id, s.name, s.description, s.icon
+     ORDER BY s.id'
+)->fetch_all(MYSQLI_ASSOC);
+
 $pageTitle = 'Home';
 require __DIR__ . '/../app/includes/header.php';
 ?>
@@ -18,11 +29,14 @@ require __DIR__ . '/../app/includes/header.php';
         <h2>Our services</h2>
         <p class="lead">Packages priced by property type and size.</p>
         <div class="grid">
-            <div class="card"><div class="icon">🧹</div><h3>Sweeping and cleaning</h3><p>Regular and deep cleaning for homes and offices.</p></div>
-            <div class="card"><div class="icon">💧</div><h3>Water tank cleaning</h3><p>Safe, thorough tank cleaning and sanitising.</p></div>
-            <div class="card"><div class="icon">🔧</div><h3>Plumbing</h3><p>Leaks, fittings, blockages and repairs.</p></div>
-            <div class="card"><div class="icon">💡</div><h3>Electrical</h3><p>Wiring, switches, lighting and fault fixing.</p></div>
-            <div class="card"><div class="icon">❄️</div><h3>AC servicing</h3><p>Cleaning, gas refill and repair.</p></div>
+            <?php foreach ($services as $s): ?>
+                <div class="card">
+                    <div class="icon"><?= e($s['icon']) ?></div>
+                    <h3><?= e($s['name']) ?></h3>
+                    <p><?= e($s['description']) ?></p>
+                    <p class="price">From Rs <?= number_format((float) $s['from_price']) ?></p>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

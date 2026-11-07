@@ -47,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!$errors) {
-        $hash  = password_hash($password, PASSWORD_DEFAULT);
-        $role  = 'customer';   // set by the server, never taken from the form
+        $hash       = password_hash($password, PASSWORD_DEFAULT);
+        $role       = 'customer';
         $phoneValue = ($phone === '') ? null : $phone;
 
         try {
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->close();
             redirect('/login.php?registered=1');
         } catch (mysqli_sql_exception $ex) {
-            if ($ex->getCode() === 1062) {   // duplicate email slipped through
+            if ($ex->getCode() === 1062) {
                 $errors[] = 'An account with this email already exists.';
             } else {
                 error_log('Register failed: ' . $ex->getMessage());
@@ -70,38 +70,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+$pageTitle = 'Sign up';
+require __DIR__ . '/../app/includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sign up | Maintenance Hub</title>
-</head>
-<body>
-    <h1>Create your account</h1>
 
-    <?php foreach ($errors as $error): ?>
-        <p style="color:red;"><?= e($error) ?></p>
-    <?php endforeach; ?>
+<div class="auth-wrap">
+    <div class="card auth-card">
+        <h1>Create your account</h1>
+        <p class="lead">It takes less than a minute.</p>
 
-    <form method="post" action="/register.php">
-        <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
+        <?php foreach ($errors as $error): ?>
+            <div class="alert alert-error"><?= e($error) ?></div>
+        <?php endforeach; ?>
 
-        <p><label>Full name<br>
-            <input type="text" name="full_name" value="<?= e($name) ?>" required></label></p>
-        <p><label>Email<br>
-            <input type="email" name="email" value="<?= e($email) ?>" required></label></p>
-        <p><label>Phone (optional)<br>
-            <input type="text" name="phone" value="<?= e($phone) ?>"></label></p>
-        <p><label>Password<br>
-            <input type="password" name="password" required></label></p>
-        <p><label>Confirm password<br>
-            <input type="password" name="confirm_password" required></label></p>
+        <form method="post" action="/register.php">
+            <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
 
-        <button type="submit">Sign up</button>
-    </form>
+            <div class="field">
+                <label for="full_name">Full name</label>
+                <input type="text" id="full_name" name="full_name" value="<?= e($name) ?>" required>
+            </div>
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="<?= e($email) ?>" required>
+            </div>
+            <div class="field">
+                <label for="phone">Phone (optional)</label>
+                <input type="text" id="phone" name="phone" value="<?= e($phone) ?>">
+            </div>
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="field">
+                <label for="confirm_password">Confirm password</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
 
-    <p>Already have an account? <a href="/login.php">Log in</a></p>
-</body>
-</html>
+            <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+        </form>
+
+        <p style="margin-top:18px;">Already have an account? <a href="/login.php">Log in</a></p>
+    </div>
+</div>
+
+<?php require __DIR__ . '/../app/includes/footer.php'; ?>

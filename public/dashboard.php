@@ -3,29 +3,29 @@ require __DIR__ . '/../app/includes/auth.php';
 require_login();
 
 $role = $_SESSION['role'];
+$pageTitle = 'Dashboard';
+require __DIR__ . '/../app/includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard | Maintenance Hub</title>
-</head>
-<body>
-    <h1>Welcome, <?= e($_SESSION['name']) ?></h1>
-    <p>You are logged in as: <strong><?= e($role) ?></strong></p>
 
-    <?php if ($role === 'admin'): ?>
-        <p>Admin area will go here: services, workers, bookings, reports.</p>
-    <?php elseif ($role === 'worker'): ?>
-        <p>Worker area will go here: your assigned jobs.</p>
-    <?php else: ?>
-        <p>Customer area will go here: book a service, see your bookings.</p>
-    <?php endif; ?>
+<section class="section">
+    <div class="container">
+        <h2>Welcome, <?= e($_SESSION['name']) ?></h2>
+        <p class="lead">You are logged in as <strong><?= e($role) ?></strong>.</p>
 
-    <form method="post" action="/logout.php">
-        <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
-        <button type="submit">Log out</button>
-    </form>
-</body>
-</html>
+        <div class="grid">
+            <?php if ($role === 'admin'): ?>
+                <div class="card"><div class="icon">🛠️</div><h3>Services and packages</h3><p>Coming soon: manage the catalog.</p></div>
+                <div class="card"><div class="icon">👷</div><h3>Workers</h3><p>Coming soon: add and manage workers.</p></div>
+                <div class="card"><div class="icon">📋</div><h3>Bookings</h3><p>Coming soon: assign and track bookings.</p></div>
+                <div class="card"><div class="icon">📈</div><h3>Reports</h3><p>Coming soon: revenue and top rated workers.</p></div>
+            <?php elseif ($role === 'worker'): ?>
+                <div class="card"><div class="icon">📋</div><h3>My jobs</h3><p>Coming soon: your assigned jobs and progress updates.</p></div>
+            <?php else: ?>
+                <div class="card"><div class="icon">🗓️</div><h3>Book a service</h3><p>Coming soon: pick a package and a time slot.</p></div>
+                <div class="card"><div class="icon">📋</div><h3>My bookings</h3><p>Coming soon: track status, cancel, and leave reviews.</p></div>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+
+<?php require __DIR__ . '/../app/includes/footer.php'; ?>

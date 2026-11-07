@@ -130,3 +130,46 @@ a:hover { text-decoration: underline; }
 }
 
 .card .price { color: var(--primary); font-weight: 700; margin-top: 12px; }
+
+/* Booking form */
+.book-card { width: min(720px, 92%); }
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font: inherit;
+    background: #fff;
+}
+.field select:focus,
+.field textarea:focus { outline: 2px solid var(--primary); border-color: var(--primary); }
+.form-row { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+.price-box {
+    background: #f0fdfa;
+    border: 1px solid #99f6e4;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.price-box strong { font-size: 1.4rem; color: var(--primary); }
+
+.slot-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.slot input { position: absolute; opacity: 0; pointer-events: none; }
+.slot span {
+    display: inline-block;
+    padding: 9px 16px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    background: #fff;
+}
+.slot input:checked + span { border-color: var(--primary); background: #f0fdfa; color: var(--primary); }
+.slot input:disabled + span { opacity: 0.45; cursor: not-allowed; text-decoration: line-through; }
+.slot input:focus-visible + span { outline: 2px solid var(--primary); }
+.hint { color: var(--muted); font-size: 0.9rem; margin: 6px 0 0; }

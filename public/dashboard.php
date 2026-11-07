@@ -21,8 +21,8 @@ require __DIR__ . '/../app/includes/header.php';
             <?php elseif ($role === 'worker'): ?>
                 <div class="card"><div class="icon">📋</div><h3>My jobs</h3><p>Coming soon: your assigned jobs and progress updates.</p></div>
             <?php else: ?>
-                <div class="card"><div class="icon">🗓️</div><h3>Book a service</h3><p>Coming soon: pick a package and a time slot.</p></div>
-                <div class="card"><div class="icon">📋</div><h3>My bookings</h3><p>Coming soon: track status, cancel, and leave reviews.</p></div>
+                <a class="card card-link" href="/book.php"><div class="icon">🗓️</div><h3>Book a service</h3><p>Pick a package, a date and a free time slot.</p></a>
+                <a class="card card-link" href="/my-bookings.php"><div class="icon">📋</div><h3>My bookings</h3><p>Track status and cancel if your plans change.</p></a>
             <?php endif; ?>
         </div>
     </div>

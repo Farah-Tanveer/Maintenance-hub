@@ -234,3 +234,6 @@ table.table {
     background: #fff;
 }
 .btn-small { padding: 7px 16px; }
+
+.subhead { margin: 40px 0 14px; font-size: 1.3rem; }
+.booking-side form { margin: 0; }

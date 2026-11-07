@@ -15,8 +15,8 @@ require __DIR__ . '/../app/includes/header.php';
         <div class="grid">
             <?php if ($role === 'admin'): ?>
                 <div class="card"><div class="icon">🛠️</div><h3>Services and packages</h3><p>Coming soon: manage the catalog.</p></div>
-                <div class="card"><div class="icon">👷</div><h3>Workers</h3><p>Coming soon: add and manage workers.</p></div>
-                <div class="card"><div class="icon">📋</div><h3>Bookings</h3><p>Coming soon: assign and track bookings.</p></div>
+                <a class="card card-link" href="/admin-workers.php"><div class="icon">👷</div><h3>Workers</h3><p>Create worker accounts and see your team.</p></a>
+                <a class="card card-link" href="/admin-bookings.php"><div class="icon">📋</div><h3>Bookings</h3><p>Review requests and assign workers.</p></a>
                 <div class="card"><div class="icon">📈</div><h3>Reports</h3><p>Coming soon: revenue and top rated workers.</p></div>
             <?php elseif ($role === 'worker'): ?>
                 <div class="card"><div class="icon">📋</div><h3>My jobs</h3><p>Coming soon: your assigned jobs and progress updates.</p></div>

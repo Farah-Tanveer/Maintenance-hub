@@ -1,6 +1,6 @@
 # secrets and local config
 .env
-config/database.php
+app/config/database.php
 
 # uploads and logs
 uploads/

@@ -237,3 +237,18 @@ table.table {
 
 .subhead { margin: 40px 0 14px; font-size: 1.3rem; }
 .booking-side form { margin: 0; }
+
+/* Reviews */
+.review-box { flex-basis: 100%; border-top: 1px solid var(--border); padding-top: 14px; }
+.review-box form { display: grid; gap: 10px; max-width: 460px; }
+.review-box select,
+.review-box textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font: inherit;
+    background: #fff;
+}
+.stars { color: var(--accent); letter-spacing: 2px; font-size: 1.15rem; }
+.review-text { color: var(--muted); margin: 4px 0 0; font-style: italic; }

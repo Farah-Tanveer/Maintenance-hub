@@ -19,7 +19,7 @@ require __DIR__ . '/../app/includes/header.php';
                 <a class="card card-link" href="/admin-bookings.php"><div class="icon">📋</div><h3>Bookings</h3><p>Review requests and assign workers.</p></a>
                 <div class="card"><div class="icon">📈</div><h3>Reports</h3><p>Coming soon: revenue and top rated workers.</p></div>
             <?php elseif ($role === 'worker'): ?>
-                <div class="card"><div class="icon">📋</div><h3>My jobs</h3><p>Coming soon: your assigned jobs and progress updates.</p></div>
+                <a class="card card-link" href="/my-jobs.php"><div class="icon">📋</div><h3>My jobs</h3><p>See your assigned jobs and update their progress.</p></a>
             <?php else: ?>
                 <a class="card card-link" href="/book.php"><div class="icon">🗓️</div><h3>Book a service</h3><p>Pick a package, a date and a free time slot.</p></a>
                 <a class="card card-link" href="/my-bookings.php"><div class="icon">📋</div><h3>My bookings</h3><p>Track status and cancel if your plans change.</p></a>

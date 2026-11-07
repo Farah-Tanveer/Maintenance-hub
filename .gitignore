@@ -1,0 +1,12 @@
+# secrets and local config
+.env
+config/database.php
+
+# uploads and logs
+uploads/
+*.log
+
+# editor and OS files
+.vscode/
+.idea/
+.DS_Store

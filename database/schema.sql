@@ -54,3 +54,19 @@ CREATE TABLE IF NOT EXISTS bookings (
     CONSTRAINT fk_bookings_package  FOREIGN KEY (package_id)  REFERENCES packages (id),
     CONSTRAINT fk_bookings_worker   FOREIGN KEY (worker_id)   REFERENCES users (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS reviews (
+    id          INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    booking_id  INT UNSIGNED NOT NULL,
+    customer_id INT UNSIGNED NOT NULL,
+    worker_id   INT UNSIGNED NOT NULL,
+    rating      TINYINT UNSIGNED NOT NULL,
+    comment     VARCHAR(500) DEFAULT NULL,
+    created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_review_booking (booking_id),
+    CONSTRAINT fk_reviews_booking  FOREIGN KEY (booking_id)  REFERENCES bookings (id),
+    CONSTRAINT fk_reviews_customer FOREIGN KEY (customer_id) REFERENCES users (id),
+    CONSTRAINT fk_reviews_worker   FOREIGN KEY (worker_id)   REFERENCES users (id),
+    CONSTRAINT chk_reviews_rating  CHECK (rating BETWEEN 1 AND 5)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -269,3 +269,15 @@ table.table {
 .check-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
 .check-row input { width: auto; }
 @media (max-width: 560px) { .pkg-grid { grid-template-columns: 1fr; } }
+
+/* Reports */
+.stat-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 36px; }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+.stat .num { font-size: 1.9rem; font-weight: 800; color: var(--primary); line-height: 1.2; }
+.stat .label { color: var(--muted); font-size: 0.9rem; }
+
+.bar-row { display: grid; grid-template-columns: 110px 1fr 40px; gap: 12px; align-items: center; margin-bottom: 10px; }
+.bar-track { background: #e2e8f0; border-radius: 999px; height: 12px; overflow: hidden; }
+.bar-fill { background: var(--primary); height: 100%; border-radius: 999px; }
+.report-grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); margin-bottom: 36px; }
+.report-grid h3 { margin-top: 0; }

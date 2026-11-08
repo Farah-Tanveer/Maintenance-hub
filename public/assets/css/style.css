@@ -252,3 +252,20 @@ table.table {
 }
 .stars { color: var(--accent); letter-spacing: 2px; font-size: 1.15rem; }
 .review-text { color: var(--muted); margin: 4px 0 0; font-style: italic; }
+
+/* Admin catalog */
+.service-admin { margin-bottom: 22px; }
+.service-admin h3 { margin-top: 0; }
+.pkg-grid { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 16px; }
+.pkg-grid .label { grid-column: 1 / -1; font-weight: 700; margin: 6px 0 -4px; }
+.pkg-grid label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 4px; }
+.pkg-grid input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font: inherit;
+}
+.check-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.check-row input { width: auto; }
+@media (max-width: 560px) { .pkg-grid { grid-template-columns: 1fr; } }

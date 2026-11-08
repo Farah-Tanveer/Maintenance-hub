@@ -64,6 +64,40 @@ You need PHP 8 with the mysqli extension, and MySQL.
 
         php -S localhost:8000 -t public
 
+## Running on Apache (optional)
+
+The PHP test server is enough for development. To run the site on Apache instead:
+
+1. Let Apache pass through your home folder and read the config file
+
+        chmod o+x ~
+        sudo chgrp www-data app/config/database.php
+        chmod 640 app/config/database.php
+
+2. Create /etc/apache2/sites-available/maintenancehub.conf with this content (change the paths to your own)
+
+        <VirtualHost *:80>
+            ServerName maintenancehub.local
+            DocumentRoot /home/YOUR_USER/projects/maintenance-hub/public
+            <Directory /home/YOUR_USER/projects/maintenance-hub/public>
+                Options -Indexes
+                AllowOverride None
+                Require all granted
+            </Directory>
+        </VirtualHost>
+
+3. Enable the site and reload Apache
+
+        sudo a2ensite maintenancehub
+        sudo apache2ctl configtest
+        sudo service apache2 reload
+
+4. Add this line to the Windows hosts file (PowerShell as Administrator), then open http://maintenancehub.local
+
+        Add-Content -Path C:\Windows\System32\drivers\etc\hosts -Value "127.0.0.1 maintenancehub.local"
+
+Only the public folder is served, so the app and database folders cannot be opened from a browser.
+
 ## Demo logins
 
 For local demos only. Delete database/seed-users.php before any real deployment.

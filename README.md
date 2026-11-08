@@ -98,6 +98,8 @@ The PHP test server is enough for development. To run the site on Apache instead
 
 Only the public folder is served, so the app and database folders cannot be opened from a browser.
 
+With WSL's default networking, the Linux address can change after a restart. If the site stops loading, run hostname -I in Ubuntu and put the new address on the maintenancehub.local line of the Windows hosts file (edit it in Notepad as Administrator).
+
 ## Demo logins
 
 For local demos only. Delete database/seed-users.php before any real deployment.
